@@ -1,0 +1,9 @@
+#shadow {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index:10;
+    background-color:black;
+    top:0;
+    left:0; 
+}

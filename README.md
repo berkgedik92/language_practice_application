@@ -2,6 +2,8 @@
 
 This is an application designed to be used for learning new words when studying a language. The application consists of four components, namely [**Server**](#server-section), [**WebAdminUI**](#admin-ui-section), [**Mobile App**](#mobile-app-section) and [**WordCrawler**](#crawler-section). Those components will be explained in detail below.
 
+//TODO: Explain briefly what each component does
+
 ## Requirements and Instructions to Run
 
 In this section, the requirements and instructions on how to run each component will be given.
@@ -40,6 +42,24 @@ ng serve
 
 When it is done, the Admin UI can be accessed by URL **"http://localhost:4200"**. For login, username "user1" and password "user1" can be used (this is the user which is created by the server as default).
 
+### Mobile Application
+
+The mobile application requires Node.js, npm and Apache Cordova. Node.js and npm should be already installed for the AdminUI. For installing Apache Cordova, the following command can be used:
+
+```
+npm install -g cordova
+```
+
+After installing Apache Cordova, the plugins and other dependencies for the mobile application component must be installed. For doing that, execute the following commands on /MobileApp folder.
+
+``` 
+npm install
+cordova platform add android
+```
+
+Note that Apache Cordova cannot work with Java 9 or newer versions so Java 8 must be installed and JAVA_HOME environment variable must be pointing to Java 8. 
+
+The commands above should be enough to install all dependencies. 
 ... 
 
 ## <a name="server-section"></a>Server
@@ -893,6 +913,8 @@ Web Admin UI is a component that can be used to create/edit/remove users, langua
 //TODO: Explain how the UI works, put some screenshots...
 
 ## <a name="mobile-app-section"></a>Mobile Application
+
+This component is a mobile application built by using Cordova. This is the application a user uses for practicing words that have been assigned to him/her.
 
 //TODO: Explain how it works, put some screenshots...
 

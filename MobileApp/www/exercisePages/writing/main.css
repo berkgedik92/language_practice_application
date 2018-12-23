@@ -1,0 +1,79 @@
+.writeWord {
+    text-align: center;
+}
+
+.letter {
+    display:inline-block;
+    border-bottom:1px solid rgba(255,255,255,0.7);
+    box-sizing:border-box;
+    color:#232830 !important;
+}
+
+.letter.show {
+    color:white;
+}
+
+.letter.correct {
+    color: #e63544 !important;
+    background-color:#232830;
+}
+
+.letterbutton {
+    display:inline-block;
+    vertical-align:top;
+    width:15vw;
+    height:15vw;
+    margin-right:1vw;
+    box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,0.7);
+    text-align: center;
+    line-height: 7vh;
+    font-size: 6vh;
+}
+
+.letterbutton:last-child {
+    margin-right: 0;
+}
+
+.questionTitle {
+    height: 9vh;
+    line-height: 9vh;
+    font-size: 9vh;
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.questionDetail {
+    height: 3vh;
+    line-height: 3vh;
+    font-size: 3vh;
+    margin-bottom: 6vh;
+    text-align: center;
+}
+
+.letter {
+    line-height: 6vh;
+    font-size: 4vh;
+    margin-right: 1vw;
+}
+
+.answerContainer {
+    display: inline-block;
+    margin-bottom: 6vh;
+}
+
+.picture {
+    height: 18vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.answerLetterLine {
+    width:80vw;
+    position:relative;
+    left:10vw;
+    margin-bottom:1vh;
+}

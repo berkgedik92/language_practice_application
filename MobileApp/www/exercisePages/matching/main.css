@@ -1,0 +1,36 @@
+.side {
+    display:inline-block;
+    vertical-align:top;
+    width:50vw;
+    height:90vh;
+    overflow:hidden;
+}
+
+.buttonContainer {
+    height:9vh;
+    position:relative;
+}
+
+.button {
+    display:inline-block;
+    position:relative;
+    width:45vw;
+    height:8vh;
+    text-align:center;
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 10px;
+    line-height: 7vh;
+    font-size: 5vh;
+}
+
+.button.selected {
+    background-color: #58616f;
+}
+
+.button.correct {
+    background-color: #48c72e;
+}
+
+.button.wrong {
+    background-color: #e63544;
+}

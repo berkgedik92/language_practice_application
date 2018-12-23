@@ -1,0 +1,38 @@
+.answer {
+    position: relative;
+    height:7vh;
+    width:80vw;
+    left:10vw;
+    box-sizing:content-box;
+    border:2px solid rgba(255,255,255,0.7);
+    text-align:center;
+    border-radius:10px;
+    margin-bottom: 1vh;
+    line-height:7vh;
+    font-size:5vh;
+}
+
+.name {
+    text-align: center;
+    height: 4vh;
+    margin-bottom: 9vh;
+    line-height: 4vh;
+    font-size: 4vh;
+}
+
+.picture {
+    height: 18vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.answer.correct {
+    background-color: #48c72e;
+}
+
+.answer.wrong {
+    background-color: #e63544;
+}

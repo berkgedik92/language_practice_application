@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+<link rel="stylesheet" href="commons/shadow.css"/>
+</head>
+<body>
+<div id="shadow"></div>
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="scripts/storageManager.js"></script>
+<script type="text/javascript" src="scripts/communicationHandler.js"></script>
+<script type="text/javascript" src="scripts/fileLoader.js"></script>
+<script>
+
+    let storage;
+    let comm;
+    let pictureURLArray = ["language/languages/circle.png"];
+
+    let authErrorCallback = function(response) {
+        window.location.href = "login.html";
+    }
+
+    let GoToIndex = function() {
+        window.location.href = "index.html";
+    }
+
+    let AddPictureURLOfObject = function(obj) {
+        if (obj && obj.pictureURL && obj.pictureURL.length > 0)
+            pictureURLArray.push(obj.pictureURL);
+    }
+
+    let authSuccessCallback = function() {
+        /*
+            Fetch all word and language-related data from the server
+            and save them to local storage
+        */
+        comm.makeRequest({
+            "url" : "api/client/loaddata",
+            "type" : RequestMethod.GET,
+            "success" : function(response) {
+                storage.set("userdata", JSON.stringify(response), function() {
+
+                    /*
+                        Extract picture URLs from userData, languageData,
+                        categories and words, and add them into pictureURLArray
+                    */
+                    //1) User picture
+                    AddPictureURLOfObject(comm.getUserData());
+
+                    //2) Language icon
+                    AddPictureURLOfObject(response.language);
+
+                    //3) Category icons
+                    var categoryKeys = Object.keys(response.categories);
+                    for (var i = 0; i < categoryKeys.length; i++)
+                        AddPictureURLOfObject(response.categories[categoryKeys[i]])
+
+                    //4) Word icons
+                    var wordKeys = Object.keys(response.words);
+                    for (var i = 0; i < wordKeys.length; i++)
+                        AddPictureURLOfObject(response.words[wordKeys[i]]);
+
+                    LoadPictures(pictureURLArray, GoToIndex);
+                });
+            }
+        });
+    }
+
+    let offlineCallback = function() {
+        alert("Cannot connect to server, cannot make updates and program will be run in offline mode");
+        GoToIndex();
+    }
+
+    let setServerURL = function(obj) {
+        SetCommServerURL(obj);
+        SetFileLoaderURL(obj);
+        FileSystemInit(function() {
+            comm = new Communicator({
+                "storage"             : storage,
+                "loginMethod"         : LoginMethod.Redirect,
+                "authErrorCallback"   : authErrorCallback,
+                "authSuccessCallback" : authSuccessCallback,
+                "offlineCallback"     : offlineCallback
+            });
+        });
+    }
+
+    let tokenChecker = function () {
+        storage = new Storage();
+
+        storage.get("serverURL", function(obj) {
+            setServerURL(obj);
+        }, function() {
+            alert("Error when getting 'serverURL' from storage (in updater.html)!");
+        });
+    }
+
+    if (window.hasOwnProperty("cordova"))    
+        document.addEventListener('deviceready', tokenChecker, false);
+    else
+        document.addEventListener('DOMContentLoaded', tokenChecker, false);
+
+</script>
+</html>

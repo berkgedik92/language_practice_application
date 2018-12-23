@@ -1,0 +1,86 @@
+.nounDataContainer, .adjectiveDataContainer {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    height: 5vh;
+}
+
+.nounTitle, .adjectiveTitle, .nounData, .adjectiveData {
+    width: 50%;
+    display: inline-block;
+    line-height: 200%;
+}
+
+.nounData, .adjectiveData {
+    text-align: center;
+}
+
+.mainContainer {
+    height: 50vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.verbTable {
+    width:100vw;
+    table-layout:fixed;
+    margin-bottom: 2vh;
+}
+
+.verbTable .rowTitle {
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    background-color: #54546B;
+    padding-left: 2vw;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    font-size: 2vh;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.verbTable .columnTitle {
+    font-size: 5vw;
+    background-color: #FF0000;
+    color: white;
+    font-style: italic;
+    text-align: center;
+}
+
+.verbTable .firstRow, .verbTable .firstColumn {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.verbTable .firstColumn {
+    width: 16vw;
+}
+
+.verbTable .cell {
+    padding-left: 2vw;
+    color: white;
+}
+
+.nounTitle {
+    font-size: 3vh;
+}
+
+.nounData {
+    font-size: 3vh;
+}
+
+.picture {
+    height: 18vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.name {
+    line-height: 5vh;
+    font-size: 5vh;
+    height: 4vh;
+    margin-bottom: 9vh;
+    text-align: center;
+}

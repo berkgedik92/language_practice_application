@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" href="commons/commons.css"/>
+        <style>
+
+        body {
+			background-color: #e63544;
+        }
+
+        div, input {
+            display: inline-block;
+            position: relative;
+        }
+
+        input {
+        	background-color: white;
+			font-size: 3vh;
+		    padding-left: 5vw;
+		    border: 0px solid #DDDDDD;
+		    height:7vh;
+		    line-height: 7vh;
+            width: 70vw;
+            left: 15vw;
+            border-radius: 5px;
+            margin-top:2vh;
+        }
+
+    	#submitButton {
+    		height: 7vh;
+    		line-height: 7vh;
+		    width: 35vw;
+            left: 32.5vw;
+		    margin-top: 5vh;
+		    font-size: 5vh;
+		    background-color: #F75967;
+		    text-align: center;
+		    color: white;
+    	}
+
+        #iconContainer {
+            width:50vw;
+            left:25vw;
+            height:50vw;
+            margin-top:5vh;
+            margin-bottom:5vh;
+            background-color: orange;
+        }
+
+        </style>
+    </head>
+    <body>
+    <div id="iconContainer"></div>
+    <input id="username" type="text" placeholder="Username"></input>
+    <input id="password" type="password" placeholder="Password"></input>
+    <input id="urldata" type="text" placeholder="URL (ex: http;//a.b.c.d:port/"/>
+    <div id="submitButton">Log in</div>
+    </body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/storageManager.js"></script>
+    <script type="text/javascript" src="scripts/communicationHandler.js"></script>
+    <script>
+
+        var storage;
+        var comm;
+
+        document.getElementById("submitButton").addEventListener("touchend", function(e) {
+            var newURL = document.getElementById("urldata").value;
+            setServerURL(newURL);
+            storage.set("serverURL", newURL, function(obj) {
+                if (!storage) 
+                    return;
+                comm.Login(document.getElementById("username").value, document.getElementById("password").value);        
+            });
+        });
+
+        var authErrorCallback = function(response) {
+            alert(response);
+        }
+
+        var authSuccessCallback = function() {
+            window.location.href = "index.html";
+        }
+
+        var offlineCallback = function() {
+            alert("There is no internet connection!");
+        }
+
+        var noTokenCallback = function() {}
+
+        function setServerURL(obj) {
+            document.getElementById("urldata").value = obj;
+            SetCommServerURL(obj);
+            comm = new Communicator({
+                "storage"             : storage,
+                "loginMethod"         : LoginMethod.Callback,
+                "authErrorCallback"   : authErrorCallback,
+                "authSuccessCallback" : authSuccessCallback,
+                "noTokenCallback"     : noTokenCallback,
+                "offlineCallback"     : offlineCallback
+            });
+        }
+
+        var tokenChecker = function () {
+            storage = new Storage();
+
+            storage.get("serverURL", function(obj) {
+                setServerURL(obj);
+            }, function() {
+                setServerURL("http://localhost:7000/");
+            }); 
+        }
+
+        if (window.hasOwnProperty("cordova"))    
+            document.addEventListener('deviceready', tokenChecker, false);
+        else
+            document.addEventListener('DOMContentLoaded', tokenChecker, false);
+
+    </script>
+</html>

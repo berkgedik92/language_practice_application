@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=2, minimum-scale=0.5, user-scalable=yes, height=device-height, width=device-width">
+<link rel="stylesheet" href="commons/commons.css"/>
+<link rel="stylesheet" href="commons/flickity.min.css"/>
+<link rel="stylesheet" href="index.css"/>
+</head>
+
+<body>
+<div id="shadow"></div>
+<div id="userdata">
+    <div id="userpicture" class="circlePicture"></div
+    ><div id="username"></div>
+    <div id="update" class="verticalCenter circlePicture"></div>
+    <div id="signout" class="verticalCenter circlePicture"></div>
+</div>
+<div id="mainPage">
+    <div id="categoryContainer" class="scrollMenu"></div>
+    <div id="actionContainer" class="scrollMenu">
+        <div class="flickElement" attr-id="0" id="dictionaryButton">
+            <div class="icon"></div>
+            <div class="text">Dictionary</div>
+        </div>
+        <div class="flickElement" attr-id="1" id="selectButton">
+            <div class="icon"></div>
+            <div class="text">Select</div>
+        </div>
+        <div class="flickElement" attr-id="2" id="matchButton">
+            <div class="icon"></div>
+            <div class="text">Match</div>
+        </div>
+        <div class="flickElement" attr-id="3" id="writeButton">
+            <div class="icon"></div>
+            <div class="text">Write</div>
+        </div>
+    </div>
+    <div id="startButton" style="margin-top:10vh;" class="totalCenter circlePicture"></div>
+</div>
+</body>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="scripts/storageManager.js"></script>
+<script type="text/javascript" src="scripts/fileLoader.js"></script>
+<script type="text/javascript" src="scripts/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="scripts/arrayOperations.js"></script>
+<script type="text/javascript" src="scripts/wordsDataManager.js"></script>
+
+<script>
+
+    let wordsDataManager;
+    let storage;
+    let userdata;
+    let username;
+
+    function HiddenMenu(data) {
+
+        let bottomHeight = data.bottomHeight;
+        let element = document.getElementById(data.container);
+        let animReady = true;
+        let hide = data.hide;
+        let elementHeight = parseInt(element.offsetHeight);
+        let animTime = data.animTime;
+
+        /*Create necessary extra divs*/
+        let paddingElement = document.createElement("div");
+        paddingElement.style["height"] = bottomHeight + "px";
+
+        let mainContainer = document.createElement("div");
+        mainContainer.classList.add("hiddenmenucontainer");
+        element.parentNode.insertBefore(mainContainer, element);
+        mainContainer.appendChild(element);
+        mainContainer.appendChild(paddingElement);
+
+        /*Hide the element if necessary*/
+        if (hide)
+            mainContainer.style["top"] = elementHeight * -1 + "px";
+
+        let minTop = elementHeight * -1;
+
+        mainContainer.addEventListener("touchstart", function(event) {
+            if (!animReady)
+                return false;
+            animReady = false;
+            
+            mainContainer.setAttribute("startY", event.touches[0].pageY);
+            mainContainer.setAttribute("startPos", parseInt(mainContainer.style["top"]));
+            mainContainer.classList.remove("animate");
+        });
+
+        mainContainer.addEventListener("touchmove", function(event) {
+            let startY = this.getAttribute("startY");
+            let moveY = event.touches[0].pageY;
+            let top = (moveY - startY) + parseInt(this.getAttribute("startPos"));
+
+            if (top > 0 || top < minTop)
+                return false;
+
+            this.style["top"] = top + "px";
+        });
+
+        mainContainer.addEventListener("touchend", function(event) {
+            let top = parseInt(this.style["top"]);
+
+            let closeDistance = Math.abs(top - minTop);
+            let openDistance = Math.abs(top);
+            this.classList.add("animate");
+            this.style["top"] = (closeDistance > openDistance) ? "0" : minTop + "px";
+
+            setTimeout(function() {animReady = true;}, 300);
+        });
+    }
+
+    document.getElementById("signout").addEventListener("touchend", function(e) {
+        storage.remove("auth", function() {
+            window.location.href = "login.html";
+        }, function() {
+            window.location.href = "login.html";
+        });
+    });
+
+    document.getElementById("update").addEventListener("touchend", function(e) {
+        window.location.href = "updater.html";
+    });
+
+    document.getElementById("startButton").addEventListener("touchend", function() {
+
+        let categoryIndex = document.querySelector("#categoryContainer .is-selected").getAttribute("attr-id");
+        console.log("Selected category index : " + categoryIndex);
+        
+        let currentAction = parseInt(document.querySelector("#actionContainer .is-selected").getAttribute("attr-id"));
+        
+        storage.set("categoryIndex", categoryIndex, function(obj) {
+            if (currentAction == 0) 
+                window.location.href = "exercisePages/dictionary/main.html";
+            else if (currentAction == 1)
+                window.location.href = "exercisePages/selecting/main.html";
+            else if (currentAction == 2)
+                window.location.href = "exercisePages/matching/main.html";
+            else if (currentAction == 3)
+                window.location.href = "exercisePages/writing/main.html";
+            else
+                alert("An error occured!");
+        });
+    });
+
+    let Loader = function () {
+        storage = new Storage();
+        wordsDataManager = new WordsDataManager(MainRenderer);
+    }
+
+    let MainRenderer = function() {
+
+        storage.get("online", function(obj) {
+            if (obj.localeCompare("true") == 0) {
+                document.getElementById("update").style["visibility"] = "visible";
+            }
+        });
+
+        storage.get("auth", function(obj) {
+            userdata = JSON.parse(obj).userdata;
+            let usernameDiv = document.getElementById("username");
+            let userpictureDiv = document.getElementById("userpicture");
+
+            SetPicture(userpictureDiv, userdata.pictureURL);
+            let userPicHeight = parseInt(userpictureDiv.offsetHeight);
+            usernameDiv.style["font-size"] = userPicHeight * 0.5 + "px";
+
+            let space = userdata.realName.indexOf(" ");
+            if (space == -1) 
+                space = userdata.realName.length;
+            let name = userdata.realName.substr(0, space);
+            usernameDiv.innerHTML = name;
+
+            let hiddenMenu = new HiddenMenu({
+                "bottomHeight": 20,
+                "container": "userdata",
+                "hide": true,
+                "animTime": 1000
+            });
+        });
+
+        let categoriesMap = wordsDataManager.getCategories();
+        let categoryKeys = Object.keys(categoriesMap);
+        let categoriesList = [];
+
+        for (let i = 0; i < categoryKeys.length; i++) {
+            let current = categoriesMap[categoryKeys[i]];
+            if (wordsDataManager.getWordsOfCategory(categoryKeys[i]).length == 0)
+                continue;
+            
+            categoriesList.push({
+                "id": categoryKeys[i],
+                "picture": current.pictureURL,
+                "name": current.name
+            });
+        }
+
+        categoriesList.push({
+            "id": "ALL",
+            "picture": "language/languages/circle.png",
+            "name": "All Words"
+        });
+
+        new Flickity(document.getElementById('actionContainer'), {
+            wrapAround: false,
+            prevNextButtons: false,
+            pageDots: false,
+            resize: false,
+            selectedAttraction: 0.02,
+            friction: 0.25,
+            setGallerySize: false,
+            cellAlign: 'center',
+            initialIndex: 1
+        });
+
+        //Set categoryFlickr
+        for (let i = 0; i < categoriesList.length; i++) {
+            let current = document.createElement('div');
+            current.classList.add('flickElement');
+
+            let icon = document.createElement('div');
+            icon.classList.add('icon');
+
+            let text = document.createElement('div');
+            text.classList.add('text');
+
+            current.appendChild(icon);
+            current.appendChild(text);
+
+            SetPicture(icon, categoriesList[i].picture);
+            text.innerHTML = categoriesList[i].name;
+            current.setAttribute("attr-id", categoriesList[i].id);
+            document.getElementById("categoryContainer").appendChild(current);
+        }
+
+        new Flickity(document.getElementById('categoryContainer'), {
+            wrapAround: false,
+            prevNextButtons: false,
+            pageDots: false,
+            resize: false,
+            selectedAttraction: 0.02,
+            friction: 0.25,
+            setGallerySize: false,
+            cellAlign: 'center',
+            initialIndex: Math.floor((categoriesList.length - 1) / 2)
+        });
+
+        /*Set inside flickr*/
+        let flickrElementHeight = document.querySelector(".flickElement").offsetHeight;
+        let flickrIcons = document.querySelectorAll(".flickElement .icon");
+        let flickrTexts = document.querySelectorAll(".flickElement .text");
+        for (let i = 0; i < flickrIcons.length; i++) {
+            flickrIcons[i].style["height"] = flickrElementHeight * 0.6 + "px";
+            flickrIcons[i].style["width"] = flickrElementHeight * 0.6 + "px";
+            flickrTexts[i].style["height"] = flickrElementHeight * 0.4 + "px";
+            flickrTexts[i].style["line-height"] = flickrElementHeight * 0.3 + "px";
+            flickrTexts[i].style["font-size"] = flickrElementHeight * 0.3 * 0.5 + "px";
+        }
+
+        document.getElementById("shadow").style["display"] = "none";
+    }
+
+    if (window.hasOwnProperty("cordova"))    
+        document.addEventListener('deviceready', Loader, false);
+    else
+        document.addEventListener('DOMContentLoaded', Loader, false);
+
+</script>
+</html>
