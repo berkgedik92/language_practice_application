@@ -1,0 +1,15 @@
+.main {
+	position:relative;
+}
+
+.label {
+	display:inline-block;
+	width:50%;
+}
+
+input {
+	display:inline-block;
+	width:50%;
+	border:1px solid black;
+	box-sizing:border-box;
+}

@@ -1,0 +1,56 @@
+table {
+	width:100%;
+	margin-bottom:10px;
+	table-layout:fixed;
+}
+
+.rowtitle {
+	box-sizing: border-box;
+	border-bottom: 1px solid rgba(255,255,255,0.7);
+    background-color: #54546B;
+    padding-left: 3%;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    font-size: 140%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.row {
+	height: 30px;
+	line-height: 30px;
+}
+
+.coltitle {
+    font-size: 20px;
+	background-color: #FF0000;
+    color: white;
+    font-style: italic;
+    text-align: center;
+}
+
+.firstrow, .firstcol {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.firstcol {
+	width: 60px;
+}
+
+.firstrow {
+	height: 40px;
+	line-height: 40px;
+}
+
+.cell {
+	padding-left: 10px;
+}
+
+.cellinput {
+	width: 100%;
+	box-sizing: border-box;
+		border: 0;
+	height: 100%;
+	font-size: 12px;
+}

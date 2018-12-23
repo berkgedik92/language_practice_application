@@ -1,0 +1,98 @@
+<div class="container" style="margin-bottom:30px;">
+	<pictureSelector #icon id="icon" 
+				 [defaultcolor]="'#ccc'"
+				 [message]="'Click to change the icon'"
+				 [original]="currentWord.pictureURL"
+				 (changepic)="PictureChanged($event)"></pictureSelector
+	><input id="name" [(ngModel)]="currentWord.name" maxlength="20" size="20"
+	/><a class="btn" (click)="Save()">Save</a>
+</div>
+<div class="container" style="z-index:2;">
+	<portlet id="meaning"
+			 [title]="'Meanings'"
+			 [data]="currentWord.meanings"
+			 [buttons]="false"
+			 [fields]="meaningFields"></portlet
+	><div id="attributecontainer">
+		<div class="row">
+			<label class="label" for="typeselect">Type</label
+			><select id="typeselect" [(ngModel)]="currentWord.type" class="attributes">
+		    	<option value="NOUN" selected>Noun</option>
+		    	<option value="VERB">Verb</option>
+		    	<option value="ADJECTIVE">Adjective</option>
+		    </select>
+		</div>
+		<div class="row">
+			<label for="leveldata" class="label">Level</label
+			><input id="leveldata" [(ngModel)]="currentWord.level" maxlength="2" class="attributes"/>
+		</div>
+		<div class="row">
+			<div class="label">Categories</div
+			><selector id="categoryselector"
+					   *ngIf = "categories && currentWord"
+				       [elementID]="'categoryselector'" 
+				       [isMultiple]="true"
+				       [pictureField]="'pictureURL'"
+				       [nameField]="'name'"
+				       [idField]="'id'"
+				       [data]="categories"
+				       [(val)]="currentWord.categories"
+				       style="width:58%;"></selector
+			><input type="button" value="New" id="newcategory" (click)="OpenCategoryPopup();" class="attributes"/>
+		</div>
+	</div>
+</div>
+
+<div id="nvcontainer">
+	<div style="display: inline-block; height:44px; line-height:44px;">Language</div>
+	<selector id="languageselector" 
+		*ngIf = "languageList && selectedLanguageID"
+	    [elementID]="'languageselector'" 
+	    [isMultiple]="false"
+	    [pictureField]="'pictureURL'"
+	    [nameField]="'name'"
+	    [idField]="'id'"
+	    [data]="languageList"
+	    [(val)]="selectedLanguageID"
+		style="width:58%;"></selector>
+		
+	<nounscreen class="datacontainer"
+		*ngIf="this.currentWord.type == 'NOUN' && currentNoun" 
+		[titles]="getLanguageByID(selectedLanguageID[0]).nouns"
+		[data]="currentNoun"
+		[language]="selectedLanguageID[0]"
+		></nounscreen>
+
+	<verbscreen class="datacontainer" 
+		*ngIf="this.currentWord.type == 'VERB' && currentVerb"
+		[titles]="getLanguageByID(selectedLanguageID[0]).verbs"
+		[data]="currentVerb"
+		[data2]="pronounsManager.getData(selectedLanguageID[0])"
+		[language]="selectedLanguageID[0]"
+		></verbscreen>
+
+	<nounscreen class="datacontainer"
+		*ngIf="this.currentWord.type == 'ADJECTIVE' && currentAdjective"
+		[titles]="getLanguageByID(selectedLanguageID[0]).adjectives"
+		[data]="currentAdjective"
+		[language]="selectedLanguageID[0]"
+		></nounscreen>
+</div>
+
+<div id="myModal" class="modal" #modal>
+	<div class="modal-content" style="width:80%;top:38%;">
+		<div class="modal-header">
+			<div class="close" (click)="CloseCategoryPopup();">×</div>
+			<div class="title">Create New Category</div>
+		</div>
+		<div class="modal-body">
+			<pictureSelector id="categoryicon" 
+				 [defaultcolor]="'#ccc'"
+				 [message]="'Click to change the icon'"
+				 [original]="''"
+				 (changepic)="CategoryPictureChanged($event)"></pictureSelector
+			><input id="categoryname" [(ngModel)]="categoryName" maxlength="15" size="15"
+			/><input id="categorysavebtn" type="button" value="Save" (click)="SaveCategory()"/>
+		</div>
+	</div>
+</div>

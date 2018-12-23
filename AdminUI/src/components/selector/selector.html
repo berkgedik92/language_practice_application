@@ -1,0 +1,29 @@
+<div (click)="ElementClicked()">
+	<div #element style="border:1px solid black;">
+		<div *ngFor="let currentID of val" 
+			  class="selectedelement" 
+			  [attr.id]="_datamap[currentID][idField]">
+			  <div class="remover" (click)="RemoverClicked($event, _datamap[currentID][idField])">X</div>
+			  <div class="selectedicon" [style.background-image]="getBackground(_datamap[currentID][pictureField])"></div>
+			  <div class="selectedtext">{{_datamap[currentID][nameField]}}</div>
+		</div>
+		<input #input class="myselectinput" type="text" size="10"
+				[disabled]="_data.length == 0"
+				[style.height]="minHeight"
+				[style.line-height]="minHeight"
+				(keyup)="InputKeyUp()"/>
+	</div>
+	<div #list class="myselectlist" style="width:100%;z-index:99;"
+		 	[style.max-height]="maxListHeight">
+		<div *ngFor="let current of _data" 
+		     class="selectlistelement" 
+		     [attr.selected]="(val.indexOf(current[idField]) != -1) ? 'true' : 'false'" 
+		     [attr.searchtext]="current[nameField]"
+		     [attr.id]="current[idField]"
+		     (click)="ListElementClicked($event)">
+		     <img class="selectlisticon"
+		     	  [attr.src]="getBackgroundSrc(current[pictureField])">
+		     <div class="selectlisttext">{{current[nameField]}}</div>
+		</div> 
+	</div>
+</div>

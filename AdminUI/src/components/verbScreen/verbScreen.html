@@ -1,0 +1,15 @@
+<table *ngFor="let a of range1(); let parentIndex = index" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="firstcol firstrow"></td>
+		<td colspan="1" *ngFor="let b of range2(parentIndex); let i = index" class="rowtitle firstrow">
+			 {{titles[parentIndex*amountPerTable + i].name}}
+		</td>
+	</tr>
+	
+	<tr *ngFor="let e of getKeys(data2)">
+		<td class="firstcol coltitle row">{{data2.get(e)}}</td>
+		<td *ngFor="let b of range2(parentIndex); let i = index" colspan="1" class="cell row">
+			<input type="text" (change)="somethingChanged($event, parentIndex, e, i)" value="{{getData(parentIndex, e, i)}}" class="cellinput"/>
+		</td>	
+	</tr>
+</table>

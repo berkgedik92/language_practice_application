@@ -1,0 +1,88 @@
+:host {
+	position: relative;
+	display: inline-block;
+	border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.title {
+	height: 30px;
+	line-height: 30px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.add {
+	position: absolute;
+	border-radius: 100px;
+	right:10px;
+	top:5px;
+	width:30px;
+	height:30px;
+	background-color: green;
+	line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size:25px;
+    color:white;
+}
+
+.titleContainer {
+	padding-bottom: 5px;
+    border-bottom: 2px dashed orange;
+    margin-bottom: 5px;
+}
+
+.record {
+	position: relative;
+	height: 30px;
+	background: #27D7EF;
+    width: 100%;
+    overflow: hidden;
+}
+
+.record:nth-child(2n) {
+	background: #C1F8FF;
+}
+
+.text {
+    display: inline-block;
+    color: black;
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+    background: inherit;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.fieldtitle {
+    display: inline-block;
+    color: black;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    background: inherit;
+    font-style: italic;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.remove {
+    display: inline-block;
+    background: red;
+    position: absolute;
+    border-radius: 30px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    right: 5px;
+    top: 5px;
+}

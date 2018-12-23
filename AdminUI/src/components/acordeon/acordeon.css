@@ -1,0 +1,77 @@
+.container {
+	display: inline-block;
+	overflow: hidden;
+	-o-transition: height 1s;
+	-moz-transition: height 1s;
+	-webkit-transition: height 1s;
+	transition: height 1s;
+	width: 100%;
+	vertical-align: top;
+}
+
+.element {
+	position: relative;
+	height:30px;
+	padding-left: 5%;
+	background-color: rgb(255, 226, 172); 
+	border-bottom: 1px solid black;
+}
+
+.element .icon {
+	width: 10%;
+}
+
+.remove:before{content:"";display:block;margin-top:100%;}
+
+.icon {
+	display: inline-block;
+	vertical-align: top;
+	width: 15%;
+	height: 100%;	
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+	margin-right: 1%;
+	background: no-repeat center;
+	background-size: contain;
+	border-radius:1000px;
+}
+
+.name {
+	display: inline-block;
+	vertical-align: top;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	top: 50%;
+	position: relative;
+	font-size: 85%;
+}
+
+.remove {
+	display: inline-block;
+	transform: translateX(50%) translateY(-50%);
+	-webkit-transform: translateX(50%) translateY(-50%);
+	-moz-transform: translateX(50%) translateY(-50%);
+	-o-transform: translateX(50%) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    border-radius: 100%;
+    width: 6%;
+    right: 10%;
+    background-size: contain;
+}
+
+.title {
+	position: relative;
+	height:30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5%;
+	background-color: rgb(130, 119, 97); 
+	border-bottom: 1px solid black;
+}

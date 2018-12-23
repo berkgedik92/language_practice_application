@@ -1,0 +1,5 @@
+<div [style.background-color]="defaultcolor" chosed="false" #rootdiv>
+	<input #fileinput class="filebox" type="file" accept="image/*" (change)="PictureChange($event)"
+	/><div class="remove noselect" (click)="Remove()">X</div
+	><div class="info noselect">{{message}}</div>
+</div>

@@ -1,0 +1,110 @@
+:host {
+	position: 		relative;
+	cursor: 		text;
+	box-sizing: 	border-box;
+	display:		inline-block;
+	width:			400px;
+	min-height:		40px;
+	vertical-align: top;
+	z-index:1;
+}
+
+.hide {
+	display: 		none;
+}
+
+.selectedelement {
+	cursor: 			default;
+	display: 			inline-block;
+    margin-top: 		5px;
+    margin-left: 		5px;
+    height: 			30px;
+	padding-left: 		5px;
+	padding-right: 		5px;
+	border-radius:		1000px;
+    border: 			1px solid black;
+}
+
+.remover {
+	cursor: 		pointer;
+	display: 		inline-block;
+    width: 			15px;
+    height: 		15px;
+    margin-right: 	5px;
+    line-height: 	30px;
+    font-size: 		10px;
+    text-align: 	center;
+    vertical-align: top;
+}
+
+.myselectlist {
+	border:			1px solid black;
+	border-top:		0;
+	display: 		none;
+	overflow-x:		hidden;
+	overflow-y:		scroll;
+	cursor: 		pointer;
+	box-sizing: 	border-box;
+}
+
+.myselectinput {
+	display: 		inline-block;
+	max-width: 		100%;
+	vertical-align: top;
+	font-size: 		15px;
+	margin-left: 	5px;
+	border: 		0;
+}
+
+.myselectinput:focus{
+    outline: 		none;
+}
+
+.selectedicon {
+	display: 				inline-block;
+	width:					24px;
+	height:					24px;
+	margin-right:			5px;
+	margin-top:				3px;
+	vertical-align: 		top;
+    background-size: 	 	100% 100%;
+    background-position: 	center;
+    background-repeat: 	 	no-repeat;
+}
+
+.selectedtext {
+	display: 		inline-block;
+	line-height: 	30px;
+	font-size: 		15px;
+	vertical-align: top;
+}
+
+ .selectlistelement {
+	height:			40px;
+}
+
+.selectlistelement[selected='false'] {
+	background-color: #fff; 
+}
+
+.selectlistelement[selected='true'] {
+	background-color: #bbb; 
+}
+
+.selectlisttext {
+	display: 		inline-block;
+	line-height: 	40px;
+	font-size: 		15px;
+	vertical-align: top;
+}
+
+.selectlisticon {
+	display: 			inline-block;
+	width:				34px;
+	height:				34px;
+	margin-left:		10px;
+	margin-right:		15px;
+	margin-top:			3px;
+	vertical-align: 	top;
+	border-radius:		1000px;
+}

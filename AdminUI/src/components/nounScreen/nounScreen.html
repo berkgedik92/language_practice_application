@@ -1,0 +1,4 @@
+<div *ngFor="let title of titles; let i = index" class="main">
+	<div class="label">{{title.name}}</div
+	><input type="text" (change)="somethingChanged($event, i)" value="{{data.getData(language).get(i+'')}}"/>
+</div>

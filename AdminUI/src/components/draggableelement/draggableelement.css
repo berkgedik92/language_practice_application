@@ -1,0 +1,18 @@
+:host {
+	padding:5px;
+	margin-right:5px;
+}
+
+.picture {
+	margin:0 auto; 
+	width:50px; 
+	height:50px;
+	background-size:100% 100%;
+	border-radius:1000px;
+}
+
+.text {
+	text-align:center;
+	line-height:20px;
+	font-size:14px;
+}

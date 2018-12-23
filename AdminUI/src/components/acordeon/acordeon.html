@@ -1,0 +1,15 @@
+<div class="container" [style.height]="targetHeight">
+	<div class="title" (click)="TitleClicked()">
+		<div class="icon"
+			 [style.background-image]="getBackground(currentTitle.pictureURL)" ></div>
+		<div class="name">{{currentTitle[titleNameField]}}</div>
+		<div *ngIf="titleRemove" class="remove noselect" (click)="DeleteTitle($event)"></div>
+	</div>
+	<div class="element" *ngFor="let elementID of ownedElementIDs" 
+						 (click)="EditElementStart(elementID)">
+		<div class="icon"
+			 [style.background-image]="getBackground(allElements.get(elementID).pictureURL)"></div>
+		<div class="name">{{allElements.get(elementID)[elementNameField]}}</div>
+		<div *ngIf="elementRemove" class="remove noselect" (click)="DeleteElement(elementID, $event)"></div>
+	</div>
+</div>

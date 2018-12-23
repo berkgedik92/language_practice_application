@@ -1,0 +1,28 @@
+<div id="listedElementsInner">
+	<div class="listtitle">{{mainTitleText}}</div>
+	
+	<acordeon *ngFor="let title of titles; let i = index" 
+		[currentTitle] 		= "title"
+		[allElements] 		= "elements" 
+		[titleNameField] 	= "titleNameField" 
+		[titleElementField] = "titleElementField"
+		[elementNameField] 	= "elementNameField"
+		[elementType] 		= "elementType"
+		[titleType] 		= "titleType"
+		[titleEdit] 		= "true"
+		[titleRemove] 		= "true"
+		[elementRemove]		= "elementRemove"
+		[titleID] 			= "i"></acordeon>
+
+	<acordeon *ngIf			= "showUncategorized"
+		[currentTitle]		= "uncategorizedTitleData" 
+		[allElements]		= "elements"		
+		[titleNameField] 	= "'name'"
+		[titleElementField] = "'ownedElements'"
+		[elementType] 		= "elementType"
+		[titleType] 		= "titleType"
+		[titleEdit] 		= "false"
+		[titleRemove] 		= "false"
+		[elementRemove]		= "elementRemove"
+		[elementNameField] 	= "elementNameField"></acordeon>
+</div>

@@ -1,0 +1,20 @@
+<div class="titleContainer">
+	<div class="title">{{title}}</div>
+	<div class="add noselect" [style.display] = "(buttons) ? 'inline-block' : 'none'" (click)="add()">+</div>
+</div>
+<div class="fieldTitle">
+	<input *ngFor="let field of fields"
+           class="fieldtitle"
+           disabled="true"
+           [attr.value]="field.title"
+           [style.width]="field.width"/>
+</div>
+<div *ngFor="let current of data; let i = index" class="record">
+	<input *ngFor="let field of fields"
+           class="text"
+           [disabled]="field.disabled"
+		   [(ngModel)]="current[field.field]" 
+		   [attr.maxlength]="field.maxlength"
+		   [style.width]="field.width"/>
+	<div class="remove noselect" *ngIf="buttons" (click)="remove(i)">X</div>
+</div>

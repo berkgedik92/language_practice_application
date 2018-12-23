@@ -1,0 +1,22 @@
+#leftlist {
+	width: 20%;
+	background: #ccc;
+	overflow-x: hidden;
+	overflow-y:auto;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+}
+
+.mainPage {
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	width: 80%;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}

@@ -1,0 +1,42 @@
+<div style="position: relative; margin-bottom:30px;">
+	<pictureSelector id="icon"
+				 #icon 
+				 [defaultcolor]="'#ccc'"
+				 [message]="'Click to change the icon'"
+				 [original]="currentLanguage.pictureURL"
+				 (changepic)="PictureChanged($event)"></pictureSelector
+	><input id="name" [(ngModel)]="currentLanguage.name" maxlength="20" size="20"
+	 /><a class="btn" (click)="Save()">Save</a>
+</div>
+<div style="position:relative;width:100%;">
+			<portlet 
+					[title]="'Pronouns'" 
+					[data]="currentLanguage.pronouns" 
+					[buttons]="true" 
+					[fields]="pronounFields"></portlet
+			><portlet
+					[title]="'Verbs'"
+					[data]="currentLanguage.verbs"
+					[buttons]="true"
+					[fields]="verbFields"></portlet
+			><portlet
+					[title]="'Noun Types'"
+					[data]="currentLanguage.nouns"
+					[buttons]="true"
+					[fields]="nounFields"></portlet
+			><portlet
+					[title]="'Adjective Types'"
+					[data]="currentLanguage.adjectives"
+					[buttons]="true"
+					[fields]="adjectiveFields"></portlet>
+</div>
+<div style="position:relative;width:100%;margin-top:30px;margin-bottom:30px;">
+	<label for="alphabet" class="label">Alphabet</label><input id="alphabet" type="text" [(ngModel)]="currentLanguage.alphabet"/>
+</div>
+
+
+
+
+
+
+			 

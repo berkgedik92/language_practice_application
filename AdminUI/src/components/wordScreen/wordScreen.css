@@ -1,0 +1,115 @@
+#nvcontainer {
+	position:relative;
+	margin-top:20px;
+	border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.datacontainer {
+	position: relative;
+	width:100%;
+}
+
+.saveButton {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    background-color: #E1E1FF;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    width: 55px;
+    cursor: pointer;
+}
+
+#languageselector {
+	margin-left:30px;
+	margin-bottom:20px;
+}
+
+#categoryicon {
+	height: 80px;
+	width:  80px;
+	border-radius: 1000px;
+	margin-right: 20px;
+}
+
+#categoryname {
+	display: inline-block;
+    height: 80px;
+    line-height: 80px;
+    font-size: 30px;
+    color: black;
+    vertical-align: top;
+    border:0;
+}
+
+#categorysavebtn {
+	height:80px;
+	vertical-align: top;
+	position: absolute;
+	right: 20px;
+	font-size: 20px;
+}
+
+#meaning {
+	width: 45%;
+	min-height: 100px;
+	overflow: hidden;
+}
+
+#attributecontainer {
+	display:inline-block;
+	width:50%;
+	margin-left:5%;
+}
+
+.row {
+	position:relative;
+	height:40px;
+	margin-bottom:5px;
+}
+
+.label {
+	display:inline-block;
+	width:20%;
+	margin-right:5%;
+}
+
+.attributes {
+	position: relative;
+	display:inline-block;
+	font-size:15px;
+	width:75%;
+	height:100%;
+	box-sizing: border-box;
+	border: 1px solid black;
+}
+
+.container {
+	position: relative;
+}
+
+.categorytab img {
+	display:inline-block;
+	vertical-align:top;
+	width:20px;
+	height:20px;
+	margin-right:5px;
+}
+
+.categorytab div {
+	display:inline-block;
+	vertical-align:top;
+	height:20px;
+	line-height:20px;
+	font-size:15px;
+}
+
+#newcategory {
+	padding:0;
+	border:0;
+	width:17%;
+	height:44px;
+}

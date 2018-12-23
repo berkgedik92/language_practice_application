@@ -1,0 +1,29 @@
+<div id="topmenu" *ngIf="httpService.isValidated">
+  <div class="menuelement" id="langbutton" (click)="GoToLangPage()"><div>Language</div></div
+  ><div class="menuelement" id="wordbutton" (click)="GoToWordPage()"><div>Words</div></div
+  ><div class="menuelement" id="userbutton" (click)="GoToUserPage()"><div>Users</div></div>
+  <div id="signoutbutton" (click)="SignOut()"></div>
+</div>
+<div id="realpage">
+  <leftlist id="leftlist"
+    *ngIf="httpService.isValidated"
+    [mainTitleText] = "mainTitleText"
+    [titles] = "titles"
+    [elements]= "elements"
+    [titleNameField] = "titleNameField"
+    [titleElementField] = "titleElementField"
+    [elementNameField] = "elementNameField"
+    [titleType] = "titleType"
+    [elementType] = "elementType"
+    [uncategorizedIDs] = "uncategorizedIDs"
+    [showUncategorized] = "showUncategorized"
+    [elementRemove] = "elementRemove"
+    (addtitle)="AddTitle($event)"
+    (editelement)="EditElementStart($event)"
+    (edittitle)="EditTitleStart($event)"
+    (deleteelement)="DeleteElementStart($event)"
+    (deletetitle)="DeleteTitleStart($event)"></leftlist
+  ><div class="mainPage">
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </div>
+</div>

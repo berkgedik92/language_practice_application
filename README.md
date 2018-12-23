@@ -17,10 +17,28 @@ MongoDB must be running while the server is running.
 
 After installing those two dependencies, a compiled JAR file can be found in /Server/languageapp.war. It can be run by the following command:
 
-//TODO: Compile tha JAR file and put it to Git repository
+//TODO: Compile the JAR file and put it to Git repository
 ```
-java -jar languageapp.jar
+java -jar /Server/languageapp.jar
 ```
+
+### WebAdminUI
+
+Web Admin UI requires Node.js and npm. Those can be installed at [**the NPM website**](https://www.npmjs.com/get-npm).
+
+After installing the dependencies, to run the Admin UI, you should open the command line on the AdminUI folder and execute the following commands:
+
+```
+npm install
+```
+
+This command is just to install the required JS libraries for the component and it should be run only one time. After that it is not necessary to execute it again. After this command is executed, run the following command to start the Admin UI component:
+
+```
+ng serve
+```
+
+When it is done, the Admin UI can be accessed by URL **"http://localhost:4200"**. For login, username "user1" and password "user1" can be used (this is the user which is created by the server as default).
 
 ... 
 
@@ -870,7 +888,15 @@ To fetch a resource (such as image), use this endpoint
 
 ## <a name="admin-ui-section"></a>Web Admin UI
 
-## <a name="mobile-app-section"></a>Server
+Web Admin UI is a component that can be used to create/edit/remove users, languages, categories and words and assign/remove words to/from a user for a language. It is a web page user interface implemented with Angular.
 
-## <a name="crawler-section"></a>Server
+//TODO: Explain how the UI works, put some screenshots...
+
+## <a name="mobile-app-section"></a>Mobile Application
+
+//TODO: Explain how it works, put some screenshots...
+
+## <a name="crawler-section"></a>Word Crawler
+
+To be implemented
 

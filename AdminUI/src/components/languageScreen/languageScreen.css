@@ -1,0 +1,30 @@
+portlet {
+	width:24%;
+	min-height: 100px;
+	margin-right: 1.33%;
+	overflow: hidden;
+}
+
+portlet:last-child {
+	margin-right: 0;
+}
+
+#alphabet {
+	display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 100%;
+}
+
+.label {
+	display: inline-block;
+	height: 30px;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right:10px;
+}

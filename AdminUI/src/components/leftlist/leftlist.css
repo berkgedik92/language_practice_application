@@ -1,0 +1,30 @@
+.listtitle {
+	background-color:black;
+	color:white;
+	line-height: 200%;
+	font-size: 150%;
+	padding-left: 5%;
+	position: relative;
+}
+
+#listedElementsInner {
+	width: 100%;
+}
+
+#listedElementsInner .add {
+	display: inline-block;
+	transform: translateX(50%) translateY(-50%);
+	-webkit-transform: translateX(50%) translateY(-50%);
+	-moz-transform: translateX(50%) translateY(-50%);
+	-o-transform: translateX(50%) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    border-radius: 100%;
+    width: 12%;
+    text-align: center;
+    right: 10%;
+    cursor: default;
+    background-size: 80%;
+}
+
+#listedElementsInner .add:before{content:"";display:block;margin-top:100%;}

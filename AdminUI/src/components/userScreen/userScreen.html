@@ -1,0 +1,101 @@
+<div [style.display]="(isuserareaopened) ? 'block' : 'none'">
+	<div class="container" style="margin-bottom:30px;">
+		<pictureSelector #icon id="icon" 
+					 [defaultcolor]="'#ccc'"
+					 [message]="'Click to change the icon'"
+					 [original]="currentUser.pictureURL"
+					 (changepic)="PictureChanged($event)"></pictureSelector
+		><input id="name" [(ngModel)]="currentUser.realName" maxlength="20" size="20"
+		/><a class="btn" (click)="SaveUser()">Save</a>
+	</div>
+	<div class="inputrow">
+		<label for="username" class="inputlabel">Username</label>
+		<input id="username" class="userinput" [(ngModel)]="currentUser.username" maxlength="20" size="20" placeholder="Enter a username"/>
+	</div>
+	<div class="inputrow">
+		<label for="password" class="inputlabel">Password</label>
+		<input id="password" class="userinput" [(ngModel)]="currentUser.password" maxlength="20" size="20" placeholder="Enter a password"/>
+	</div>
+	<div class="inputrow">
+		<div class="inputlabel">Languages</div
+		><selector id="langcontainer1"
+					*ngIf="languages"
+					[elementID]="'langcontainer1'"
+					[isMultiple]="true"
+					[pictureField]="'pictureURL'"
+					[nameField]="'name'"
+					[idField]="'id'"
+					[data]="languages"
+					[(val)]="currentUser.languageIDs"
+					style="width:58%;"></selector>
+	</div>
+
+	<div class="inputrow">
+		<div class="inputlabel">Current</div
+		><selector id="langcontainer2" 
+					*ngIf="languages"
+					[elementID]="'langcontainer2'"
+					[isMultiple]="false"
+					[pictureField]="'pictureURL'"
+					[nameField]="'name'"
+					[idField]="'id'"
+					[data]="languages"
+					[(val)]="currentUser.currentLanguageIDs"
+					style="width:58%;"></selector>
+	</div>		
+	<div class="inputrow">
+		<div class="inputlabel">Main</div
+		><selector id="langcontainer3" 
+					*ngIf="languages"
+					[elementID]="'langcontainer3'"
+					[isMultiple]="false"
+					[pictureField]="'pictureURL'"
+					[nameField]="'name'"
+					[idField]="'id'"
+					[data]="languages"
+					[(val)]="currentUser.mainLanguageIDs"
+					style="width:58%;"></selector>
+	</div>
+</div>
+<div [style.display]="(!isuserareaopened) ? 'block' : 'none'">
+	<div class="filtercontainer">
+		<div class="label">Categories:</div
+		><selector id="catcontainer"
+					[elementID]="'catcontainer'"
+					[isMultiple]="true"
+					[pictureField]="'pictureURL'"
+					[nameField]="'name'"
+					[idField]="'id'"
+					[data]="categories"
+					[(val)]="selectedCategories"
+					style="width:30%;"></selector
+		><div class="label">Level:</div
+		><input type="button" value="<" [style.background-color]="(relation=='<') ? 'red' : 'gray'" (click)="relation='<'"/>
+		<input type="button" value="=" [style.background-color]="(relation=='=') ? 'red' : 'gray'" (click)="relation='='"/>
+		<input type="button" value=">" [style.background-color]="(relation=='>') ? 'red' : 'gray'" (click)="relation='>'"/>
+		<input type="text" [(ngModel)]="selectedLevel" size="2"/>
+		<div class="button noselect" (click)="AddAll()">Add All</div>
+		<div class="button noselect" (click)="RemoveAll()">Remove All</div>
+		<a class="btn" style="top:0;" (click)="SaveUserLanguage()">Save</a>
+	</div>
+	<div>Unselected</div>
+	<div #unselectedcontainer class="wordcontainer">
+		<draggableelement *ngFor="let wordID of unassignedWords"
+					class="word unselected" 
+					[text]="words.get(wordID).meanings[currentLanguageData.languageID]" 
+					[picture]="words.get(wordID).pictureURL"
+					[attr.wordID] = "wordID" 
+					[style.display]="(!IsFiltered(wordID)) ? 'inline-block' : 'none'">
+		</draggableelement>
+	</div>
+	<div>Selected</div>
+	<div #selectedcontainer class="wordcontainer">
+		<draggableelement *ngFor="let wordID of assignedWords"
+				   class="word selected"
+				   [text]="words.get(wordID).meanings[currentLanguageData.languageID]" 
+				   [picture]="words.get(wordID).pictureURL"
+				   [attr.wordID] = "wordID" 
+				   [style.display]="(!IsFiltered(wordID)) ? 'inline-block' : 'none'">
+		</draggableelement>
+	</div>
+</div>
