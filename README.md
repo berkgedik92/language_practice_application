@@ -2,11 +2,11 @@
 
 This is an application designed to be used for learning new words when studying a language. The application consists of four components, namely [**Server**](#server-section), [**WebAdminUI**](#admin-ui-section), [**Mobile App**](#mobile-app-section) and [**WordCrawler**](#crawler-section). Those components will be explained in detail below.
 
-##Requirements and Instructions to Run
+## Requirements and Instructions to Run
 
 In this section, the requirements and instructions on how to run each component will be given.
 
-###Server
+### Server
 
 The server has the following dependencies:
 
@@ -24,13 +24,13 @@ java -jar languageapp.jar
 
 ... 
 
-##<a name="server-section"></a>Server
+## <a name="server-section"></a>Server
 
 The server provides a REST API for the other components and responsible for managing the database. 
 
 First of all, there are four main object types: [**User**](#user-class), [**Language**](#language-class), [**Category**](#category-class) and [**Word**](#word-class). The structure for all object types will be explained below:
 
-###<a name="user-class"></a>User Class
+### <a name="user-class"></a>User Class
 
 Here is the important class properties for User class:
 
@@ -119,7 +119,7 @@ Here an example User object retrieved from production is shown:
 
 <sub><a name="user-refactor-two"></a>[2]: It is planned that a value of _assignedWords_ map will keep some statistics for the corresponding word (and the user that owns the LanguageStatus object). For example, the number of exercises that the user encountered for this word, the number of wrong and correct answers from the user for this word, the last time the user performed an exercise for this word, ... will be kept. Currently we just keep a null object instead but in the next version of the server, this is planned to be implemented. </sub>
 
-###<a name="language-class"></a>Language Class
+### <a name="language-class"></a>Language Class
 
 Here is the important class properties for Language class:
 
@@ -263,7 +263,7 @@ Two example Language objects (an object for Swedish language and English languag
 }
 ```
 
-###<a name="category-class"></a>Category Class
+### <a name="category-class"></a>Category Class
 
 Here is the important class properties for Category class:
 
@@ -294,7 +294,7 @@ An example category object is given below:
 }
 ```
 
-###<a name="word-class"></a>Word Class
+### <a name="word-class"></a>Word Class
 
 Here is the important class properties for Word class:
 
@@ -480,7 +480,7 @@ Checking the Language object for the English language in the [**Language**](#lan
 ```
 <sub><a name="word-refactor-one"></a>[1]: More types will be added in the next version of the server.</sub>
 
-##REST API for the Server
+## REST API for the Server
 
 **Login**
 ----
@@ -490,7 +490,7 @@ Checking the Language object for the English language in the [**Language**](#lan
 
 * **Method:** : `POST`
   
-*  **Data**
+* **Data**
 
 The content-type is "application/json". So, {"Content-Type" "application/json; charset=UTF-8"} must be added to the header. The following is the body of the request:
 
@@ -868,11 +868,9 @@ To fetch a resource (such as image), use this endpoint
     
 <a name="api-note-one"></a> <sup>[1]: This will be refactored so it will return a better error code.</sup>
 
-##<a name="admin-ui-section"></a>Web Admin UI
+## <a name="admin-ui-section"></a>Web Admin UI
 
+## <a name="mobile-app-section"></a>Server
 
-
-##<a name="mobile-app-section"></a>Server
-
-##<a name="crawler-section"></a>Server
+## <a name="crawler-section"></a>Server
 
