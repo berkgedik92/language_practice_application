@@ -1,3 +1,0 @@
-1) Create tests where a user sends invalid request objects
-2) Test ImageManager class (mock some IO methods and then inject it to RESTControllers)
-3) ClientIntegrationTest getData test should be completed (check content of response coming from the controller)
