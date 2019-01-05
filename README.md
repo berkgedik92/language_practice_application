@@ -1,8 +1,20 @@
 # Language Practicing Application
 
-This is an application designed to be used for learning new words when studying a language. The application consists of four components, namely [**Server**](#server-section), [**WebAdminUI**](#admin-ui-section), [**Mobile App**](#mobile-app-section) and [**WordCrawler**](#crawler-section). Those components will be explained in detail below.
+This is an application designed to be used for learning new words when studying a language. The application consists of four components, namely [**Server**](#server-section), [**WebAdminUI**](#admin-ui-section), [**Mobile App**](#mobile-app-section) and [**WordCrawler**](#crawler-section). Server is responsible from storing the words, languages, word categories, users and communicating with the other components. WebAdminUI is a web page where a usercan add/remove/edit words to be practiced as well as languages and word categories. By using the Monbile App, a user can practice those words and finally WordCrawler can be used to add new words to the database in a fast and easy way. Those components will be explained in detail in this document.
 
-//TODO: Explain briefly what each component does
+## Credits
+
+The icons for the words, languages, users and word categories that you will see in the screenshots are made by the followings:
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/eucalyp" title="Eucalyp">Eucalyp</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/ddara" title="dDara">dDara</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 ## Requirements and Instructions to Run
 
@@ -12,10 +24,10 @@ In this section, the requirements and instructions on how to run each component 
 
 The server has the following dependencies:
 
-* Java 8 or newer
+* Java 8 
 * MongoDB
 
-MongoDB must be running while the server is running.
+MongoDB must be started before running the server.
 
 After installing those two dependencies, a compiled WAR file can be found in /Server/languageAppServer.war. It can be run by the following command:
 
@@ -39,7 +51,7 @@ This command is just to install the required JS libraries for the component and 
 ng serve
 ```
 
-When it is done, the Admin UI can be accessed by URL **"http://localhost:4200"**. For login, username "user1" and password "user1" can be used (this is the user which is created by the server as default).
+When it is done, the Admin UI can be accessed by URL **"http://localhost:4200"**. For login, username "user1" and password "user1" can be used (this is the user which is created by the server as default and can be changed by editing /Server/src/main/java/project/languageapp/ServerApplication.java).
 
 ### Mobile Application
 
@@ -907,9 +919,72 @@ To fetch a resource (such as image), use this endpoint
 
 ## <a name="admin-ui-section"></a>Web Admin UI
 
-Web Admin UI is a component that can be used to create/edit/remove users, languages, categories and words and assign/remove words to/from a user for a language. It is a web page user interface implemented with Angular.
+Web Admin UI is a component that can be used to create/edit/remove users, languages, categories and words and assign/remove words to/from a user for a language. It is a web page user interface implemented with Angular. After logging in, language page will be on the screen.
 
-//TODO: Explain how the UI works, put some screenshots...
+### Language Page
+
+The following is the language page (and also the main page after logging in).
+
+<p align="center"><img src="screenshots/adminui/main.png"/></p>
+
+On the top, there is a menu with three tabs, namely "Language", "Words" and "Users". Each of them loads another page where save/edit/remove operations can be executed. At the top-right, there is an icon to sign-out.
+
+On the left, existing languages are shown. If one of them is clicked, its data will be shown on the right and the UI will go into edit mode. So any performed changes on the edited language will be saved into the database if the user clicks to the "Save" button. Otherwise, if the UI is not in the edit mode, clicking to the "Save" button will create a new language. Once the UI goes into the edit mode, in order to go to normal mode, the user must go to another tab and then click to the "Language" tab. The same applies also for the Words tab and Users tab.
+
+Below, you can see how the screen looks like when the user clicks to "Swedish" in the left menu and goes into the edit mode.
+
+<p align="center"><img src="screenshots/adminui/editSwedish.png"/></p>
+
+To change the icon, click on the circle left to the name of the language. This is the same for users and words as well.
+
+### Words page
+
+Here is the word page in normal mode:
+
+<p align="center"><img src="screenshots/adminui/words.png"/></p>
+
+This time, the left menu is a bit different than what we had in the Language tab. Here, word categories are shown to the user. If a user clicks to one of those categories and if there are at least one word which belongs to this category, then the category will be expanded and words belonging to this category will be shown as can be seen in the picture below:
+
+<p align="center"><img src="screenshots/adminui/fruitsExpanded.png"/></p>
+
+Now, let's click to a word and see this word in edit mode
+
+<p align="center"><img src="screenshots/adminui/editPeach.png"/></p>
+
+The "New" button that appears next to the Categories label is to create a new category. There is no dedicated page to create and edit a category so the only way to create a new category is to use this button. It opens a popup which is responsible from creating a new category. This is how the screen looks like in edit mode for a noun. Below the same is shown for adjectives and verbs:
+
+<p align="center"><img src="screenshots/adminui/editFast.png"/></p>
+<p align="center"><i>Screenshot of UI in edit mode for an adjective</i></p>
+
+<p align="center"><img src="screenshots/adminui/editMove.png"/></p>
+<p align="center"><i>Screenshot of UI in edit mode for a verb</i></p>
+
+In the bottom frame, the language can be changed to add/edit the forms of the word in different languages. Below, you can see an example for the word "to move". English is selected as the language and its forms in English are added.
+
+<p align="center"><img src="screenshots/adminui/moveEnglish.png"/></p>
+<p align="center"><i>Screenshot of UI in edit mode for the verb "to move" (its forms in English are added)</i></p>
+
+### Users page
+
+Users page can be used to add/edit/remove a user and also to manage the assignment of words to the users. In other words, a word can be assigned to a user or a word can be removed from a user. When this user will use the mobile application to practice, (s)he will only see the words which have been assigned to him/her.
+
+This is the initial view of the users page:
+
+<p align="center"><img src="screenshots/adminui/userMain.png"/></p>
+
+The following is how the page looks like when it is in edit mode:
+
+<p align="center"><img src="screenshots/adminui/userEdit.png"/></p>
+
+When a user is clicked on the left menu, it expands and shows the languages that have been attached to the user. By clicking to one of those languages we can manage the assignment of words for this user for this language. After clicking to a language, this is the screen that we reach:
+
+<p align="center"><img src="screenshots/adminui/userLanguageEdit.png"/></p>
+
+By using the components on top, you can filter words by categories and levels. Then, dragging a word from the "unselected" frame to the "selected" frame assigns the word to the user and doing the opposite would unassign. Also, "Add All" and "Remove All" buttons can be used, this would assign/remove all words which are not filtered out. Below, you can see a screenshot where only words belonging to "Fruits" category are shown and some of them are assigned to the user.
+
+<p align="center"><img src="screenshots/adminui/userLanguageEdit2.png"/></p>
+
+Then, by pressing the "Save" button we can commit the changes.
 
 ## <a name="mobile-app-section"></a>Mobile Application
 
@@ -919,5 +994,5 @@ This component is a mobile application built by using Cordova. This is the appli
 
 ## <a name="crawler-section"></a>Word Crawler
 
-To be implemented
+//TODO: Add it to the repository and document it here.
 

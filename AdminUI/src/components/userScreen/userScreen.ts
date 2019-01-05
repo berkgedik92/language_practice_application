@@ -251,13 +251,12 @@ export class UserScreenComponent implements AfterViewInit {
 		return [s, a].reduce((p,c) => p.filter(e => c.includes(e)));
 	}
 
-	IsFiltered(id: String) {
+	ShouldFilter(id: String) {
 		let data: Word = this.words.get(id);
 
 		//Check categories
-		let isCategoryOk = this.selectedCategories.indexOf("ALL") != -1 || this.intersect(data.categories, this.selectedCategories);
-
-		if (!isCategoryOk)
+		let isAllOk = this.selectedCategories.indexOf("ALL") != -1;
+		if (!isAllOk && this.intersect(data.categories, this.selectedCategories).length == 0)
 			return true;
 
 		//Check level
@@ -277,7 +276,7 @@ export class UserScreenComponent implements AfterViewInit {
 	RemoveAll() {
 		for (let i = 0; i < this.assignedWords.length; i++) {
 			let id = this.assignedWords[i];
-			let isDisplayed = !this.IsFiltered(id);
+			let isDisplayed = !this.ShouldFilter(id);
 			if (isDisplayed) {
 				this.unassignedWords.push(id);
 				this.assignedWords.splice(i, 1);
@@ -289,7 +288,7 @@ export class UserScreenComponent implements AfterViewInit {
 	AddAll() {
 		for (let i = 0; i < this.unassignedWords.length; i++) {
 			let id = this.unassignedWords[i];
-			let isDisplayed = !this.IsFiltered(id);
+			let isDisplayed = !this.ShouldFilter(id);
 			if (isDisplayed) {
 				this.unassignedWords.splice(i, 1);
 				this.assignedWords.push(id);

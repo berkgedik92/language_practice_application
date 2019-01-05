@@ -85,7 +85,7 @@
 					[text]="words.get(wordID).meanings[currentLanguageData.languageID]" 
 					[picture]="words.get(wordID).pictureURL"
 					[attr.wordID] = "wordID" 
-					[style.display]="(!IsFiltered(wordID)) ? 'inline-block' : 'none'">
+					[style.display]="(!ShouldFilter(wordID)) ? 'inline-block' : 'none'">
 		</draggableelement>
 	</div>
 	<div>Selected</div>
@@ -95,7 +95,7 @@
 				   [text]="words.get(wordID).meanings[currentLanguageData.languageID]" 
 				   [picture]="words.get(wordID).pictureURL"
 				   [attr.wordID] = "wordID" 
-				   [style.display]="(!IsFiltered(wordID)) ? 'inline-block' : 'none'">
+				   [style.display]="(!ShouldFilter(wordID)) ? 'inline-block' : 'none'">
 		</draggableelement>
 	</div>
 </div>
