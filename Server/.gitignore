@@ -1,9 +1,14 @@
 # Compiled class file
 *.class
-**/.DS_Store
-.idea
+
+/.idea
 maven_settings.xml
-target
+/target
+
+/dbfiles/*/*
+!/dbfiles/*/circle.png
+!/dbfiles/users/user1.gif
+
 # Log file
 *.log
 

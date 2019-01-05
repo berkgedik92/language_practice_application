@@ -526,7 +526,7 @@ Checking the Language object for the English language in the [**Language**](#lan
   
 * **URL** : `/login/token`
 
-* **Method:** : `POST`
+* **Method:** `POST`
   
 * **Data**
 
@@ -603,12 +603,12 @@ The content-type is "application/json". So, {"Content-Type" "application/json; c
 
 * **Method:** : `GET`
   
-*  **Data**: Empty
+* **Data**: Empty
 
 * **Success Response:**
   
   * **Code:** 200 OK <br />
-    **Content:** : A list of [**User**](#user-class)/[**Category**](#category-class)/[**Lannguage**](#language-class) or [**Word**](#word-class)/objects.
+    **Content:** A list of [**User**](#user-class), [**Category**](#category-class), [**Language**](#language-class) or [**Word**](#word-class) objects.
 * **Error Response:**
 
   * **Code:** 401 UNAUTHORIZED <br />
