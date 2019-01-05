@@ -109,7 +109,7 @@ function WordsDataManager(f) {
     
             nouns = database.language.nouns;
             adjectives = database.language.adjectives;
-            verbs = database.language.tenses;
+            verbs = database.language.verbs;
             alphabet = [];
             for (let i = 0; i < database.language.alphabet.length; i++)
                 alphabet.push(database.language.alphabet[i]);

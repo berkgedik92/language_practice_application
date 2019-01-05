@@ -12,10 +12,10 @@ let dictionarypageRenderer = function(pageIndex, viewsMap) {
         viewsMap.nounContainer.style["display"] = "inline-block";
 
         for (let i = 0; i < manager.getNumberOfNounTypes(); i++) {
-            let visible = otherData && otherData.data[i].length > 0;
+            let visible = otherData && otherData[i].length > 0;
             viewsMap["noun_container" + i].style["display"] = (visible) ? "block" : "none";
             if (visible)
-                viewsMap["noun_data" + i].innerHTML = otherData.data[i];
+                viewsMap["noun_data" + i].innerHTML = otherData[i];
         }
     }
     else if (word.type.localeCompare("VERB") == 0) {
@@ -24,7 +24,7 @@ let dictionarypageRenderer = function(pageIndex, viewsMap) {
         viewsMap.verbContainer.style["display"] = "inline-block";
         for (let i = 0; i < manager.getNumberOfVerbTypes(); i++)
             for (let j = 0; j < manager.getNumberOfPronounGroups(); j++) {
-                viewsMap["verb_data_" + i + "_" + j].innerHTML = otherData && otherData.data[i][j];
+                viewsMap["verb_data_" + i + "_" + j].innerHTML = otherData && otherData[i][j];
             }
     }
     else if (word.type.localeCompare("ADJECTIVE") == 0) {
@@ -33,10 +33,10 @@ let dictionarypageRenderer = function(pageIndex, viewsMap) {
         viewsMap.adjectiveContainer.style["display"] = "inline-block";
 
         for (let i = 0; i < manager.getNumberOfAdjectiveTypes(); i++) {
-            let visible = otherData && otherData.data[i].length > 0;
+            let visible = otherData && otherData[i].length > 0;
             viewsMap["adjective_container" + i].style["display"] = (visible) ? "block" : "none";
             if (visible)
-                viewsMap["adjective_data" + i].innerHTML = otherData.data[i];
+                viewsMap["adjective_data" + i].innerHTML = otherData[i];
         }
     }
 }

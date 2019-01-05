@@ -71,7 +71,7 @@ cordova platform add android
 Note that Apache Cordova cannot work with Java 9 or newer versions so Java 8 must be installed and JAVA_HOME environment variable must be pointing to Java 8. 
 
 The commands above should be enough to install all dependencies. 
-... 
+//TODO: Explain how to install it to phone
 
 ## <a name="server-section"></a>Server
 
@@ -988,11 +988,52 @@ Then, by pressing the "Save" button we can commit the changes.
 
 ## <a name="mobile-app-section"></a>Mobile Application
 
-This component is a mobile application built by using Cordova. This is the application a user uses for practicing words that have been assigned to him/her.
+This component is a mobile application built by using Cordova. This is the application a user uses for practicing words that have been assigned to him/her. When running the application on phone, if the user was not logged in before, the following screen will appear:
 
-//TODO: Explain how it works, put some screenshots...
+<p align="center"><img src="screenshots/mobileapp/login.png" width=256/></p>
+
+Here, the username and password is the same with what have been used for AdminUI. In the last textbox, the URL to be used should be written. This will be used to communicate with the server. To make them able to connect, the computer where the server is running and the mobile phone should be connected to same WiFi. Then, check the local IP of the computer and replace "localhost" with this IP address. If the user is logged in before, this screen will not appear and the user will immediately see the main page, which is shown below.
+
+<p align="center"><img src="screenshots/mobileapp/main.png" width=256/></p>
+
+Here, there is an unvisible top menu which can be brought to the screen by moving down a finger from the top edge. Then the top menu will appear as the following:
+
+<p align="center"><img src="screenshots/mobileapp/mainWithTop.png" width=256/></p>
+
+This menu can be removed from the screen by just the opposite gesture. In this menu, click the icon on the right to log out and the refresh icon can be clicked to retrieve the latest database from the server (so the data in the phone will be synchronized with the server).
+
+There are two components in this main screen. Those components work by dragging gesture, they can be dragged to left and right. By dragging, another icon can be brought to the center and highlighted and this is how to make a selection. The first component is used to select the word category that the user will be exercising on. The second component is used to pick the exercise type. Then, by pressing the button on down, the exercise can be started. There are four kinds of exercises: "Dictionary", "Select", "Match" and "Write". Those exercises will be explained in the following sections.
+
+### Dictionary
+
+This is not really an exercise but a way to see different forms of words and practice them by reading. The dictionary page looks like the following (left one is a screenshot for a noun and the right one is for a verb):
+
+<p align="center"><img src="screenshots/mobileapp/dictionaryNoun.png" width=256/><img src="screenshots/mobileapp/dictionaryVerb.png" width=256/></p>
+
+User can go to the next word or previous word by dragging the page to the left or to the right. If it is not possible to drag it to right, it means that the user reached to the end of the words. Back button on the top left can be clicked to return to the main page.
+
+### Select
+
+In this exercise, for a word, the application gives four options and the user is expected to pick the correct option. When user gives the correct answer, the next question appears.
+
+<p align="center"><img src="screenshots/mobileapp/select.png" width=256/></p>
+
+### Match
+
+In this exercise, a user is expected to match the words in the left column with the words in the right column. User presses to a word in the left column first and then (s)he is expected to click the matching word at the right column. If those two words are really matching, they will turn into green and disappear from the columns.
+
+<p align="center"><img src="screenshots/mobileapp/match.png" width=256/></p>
+
+### Write
+
+In this exercise, the user is expected to write a word in the practiced language and in the requested form by clicking to letters. 
+
+<p align="center"><img src="screenshots/mobileapp/write.png" width=256/></p>
+
+For example, for the case which is seen in the screenshot above, the user is expected to write "lemon" in Swedish and in "bestämd plural" form (definite plural), which is "citronerna". 
+
 
 ## <a name="crawler-section"></a>Word Crawler
 
-//TODO: Add it to the repository and document it here.
+This is not documented and added to the repository yet. This will be done in the future.
 

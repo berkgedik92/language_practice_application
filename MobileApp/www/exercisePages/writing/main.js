@@ -47,7 +47,7 @@ let writerpageRenderer = function(pageIndex, viewDict) {
     let answer;
 
     let possibilities = [];
-    let data = word.otherData.data;
+    let data = word.otherData;
     let keys = Object.keys(data);
 
     if (word.type.localeCompare("VERB") == 0) {
