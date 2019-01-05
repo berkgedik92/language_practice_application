@@ -73,6 +73,21 @@ Note that Apache Cordova cannot work with Java 9 or newer versions so Java 8 mus
 The commands above should be enough to install all dependencies. 
 //TODO: Explain how to install it to phone
 
+### Restoring the Provided Database
+
+Initially, the database is empty (only a user with username = user1 and password = user1 is created automatically when the server is run), however, if you wish, you can initialize the database provided in this repository in your computer so you will start with some languages, words and word categories.
+
+The files that are required to restore the database are language_app_db.zip and dbfiles.zip. The following instructions will explain how to do that.
+
+<ul>
+<li> Uncompress dbfiles.zip, replace /Server/dbfiles folder with the dbfiles folder that is extracted from this ZIP file.</li>
+<li> Uncompress language_app_db.zip, then run the following command:</li>
+</ul>
+
+``` 
+mongorestore -d language_app language_app_db
+```
+
 ## <a name="server-section"></a>Server
 
 The server provides a REST API for the other components and responsible for managing the database. 
