@@ -17,11 +17,10 @@ The server has the following dependencies:
 
 MongoDB must be running while the server is running.
 
-After installing those two dependencies, a compiled JAR file can be found in /Server/languageapp.war. It can be run by the following command:
+After installing those two dependencies, a compiled WAR file can be found in /Server/languageAppServer.war. It can be run by the following command:
 
-//TODO: Compile the JAR file and put it to Git repository
 ```
-java -jar /Server/languageapp.jar
+java -jar /Server/languageAppServer.war
 ```
 
 ### WebAdminUI
