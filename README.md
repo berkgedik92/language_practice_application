@@ -1,6 +1,6 @@
 # Language Practicing Application
 
-This is an application designed to be used for learning new words when studying a language. The application consists of four components, namely [**Server**](#server-section), [**WebAdminUI**](#admin-ui-section), [**Mobile App**](#mobile-app-section) and [**WordCrawler**](#crawler-section). Server is responsible from storing the words, languages, word categories, users and communicating with the other components. WebAdminUI is a web page where a usercan add/remove/edit words to be practiced as well as languages and word categories. By using the Monbile App, a user can practice those words and finally WordCrawler can be used to add new words to the database in a fast and easy way. Those components will be explained in detail in this document.
+This is an application designed to be used for learning new words when studying a language. The application consists of four components, namely [**Server**](#server-section), [**WebAdminUI**](#admin-ui-section), [**Mobile App**](#mobile-app-section) and [**WordCrawler**](#crawler-section). Server is responsible from storing the words, languages, word categories, users and communicating with the other components. WebAdminUI is a web page where a usercan add/remove/edit words to be practiced as well as languages and word categories. By using the Mobile App, a user can practice those words and finally WordCrawler can be used to add new words to the database in a fast and easy way. Those components will be explained in detail in this document.
 
 ## Credits
 

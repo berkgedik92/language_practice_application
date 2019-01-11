@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+	"name": "WordCrawler (for Swedish)",
+	"description": "An extension for adding words from Swedish wikitionary to the server",
+	"version": "1.0",
+	/*"background": {
+		"persistent": false,
+		"scripts": ["background.js"]
+	},*/
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [{ 
+		"run_at" :"document_end",
+		"matches": ["https://*.wiktionary.org/*"],
+		"js": ["jquery-2.2.4.min.js"]
+	}],
+	"permissions": [
+		"storage",
+		"http://*/*", 
+		"https://*/*",
+		"tabs",
+		"activeTab"
+    ]
+}
