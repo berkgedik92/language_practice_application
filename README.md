@@ -72,8 +72,14 @@ cordova platform add android
 
 Note that Apache Cordova cannot work with Java 9 or newer versions so Java 8 must be installed and JAVA_HOME environment variable must be pointing to Java 8. 
 
-The commands above should be enough to install all dependencies. 
-//TODO: Explain how to install it to phone
+The commands above should be enough to install all dependencies. After that the following command will create an APK file which can be used to install the mobile application to an Android phone.
+
+``` 
+cordova build android
+``` 
+
+Also, a compiled APK file is provided in the repository, you can find it at /MobileApp/app-debug.apk
+
 
 ### Restoring the Provided Database
 
