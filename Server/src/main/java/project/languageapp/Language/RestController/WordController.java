@@ -66,6 +66,19 @@ public class WordController extends ImageManager {
         return new ResponseEntity<>("Word with ID " + wordID + " has been deleted", HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/save2", method = RequestMethod.POST)
+    public ResponseEntity<?> createOrEditWord2(@RequestBody WordCURequest requestData) {
+        Word word;
+        word = new Word(requestData);
+        word = wordRepository.save(word);
+        wordService.AddWordToCategories(word.getId(), word.getCategories());
+        LOGGER.info("Word saved. (ID : " + word.getId() + ")");
+        Map<String, String> response = new HashMap<>();
+        response.put("id", word.getId());
+        response.put("pictureURL", word.getPictureURL());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<?> createOrEditWord(MultipartHttpServletRequest request) {
         MPRWrapper wrapper = wrapperService.createInstance(request);

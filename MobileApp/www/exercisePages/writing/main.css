@@ -21,8 +21,8 @@
 .letterbutton {
     display:inline-block;
     vertical-align:top;
-    width:15vw;
-    height:15vw;
+    width:12vw;
+    height:12vw;
     margin-right:1vw;
     box-sizing: border-box;
     border: 1px solid rgba(255,255,255,0.7);
