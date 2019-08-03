@@ -1,6 +1,7 @@
 
 let writeQuestionAnswer = "";
 let writeQuestionCurrentLetter = 0;
+let letterAmount = 12;
 
 let writerpageRenderer = function(pageIndex, viewDict) {
     let manager = managerr.getDataManager();
@@ -11,7 +12,7 @@ let writerpageRenderer = function(pageIndex, viewDict) {
 
     viewDict.questionTitle.innerHTML = word.mainMeaning;
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < letterAmount; i++) {
         let button = viewDict["button" + i];
 
         button.addEventListener("touchend", function() {
@@ -32,8 +33,6 @@ let writerpageRenderer = function(pageIndex, viewDict) {
                             pageSlider.GoNextPageWithAnim();
                     }, 400);
                 }
-                //else if (writeQuestionAnswer[writeQuestionCurrentLetter].localeCompare(" ") == 0)
-                //    writeQuestionCurrentLetter++;
             }
             else {
                 element.classList.add("wrong");
@@ -108,15 +107,14 @@ let writerpageRenderer = function(pageIndex, viewDict) {
     let selectedLetters = [];
 
     for (let i = 0; i < answer.length; i++)
-        //if (answer[i].localeCompare(" ") != 0 && answerLetters.indexOf(answer[i]) == -1) {
         if (answerLetters.indexOf(answer[i]) == -1) {
             answerLetters.push(answer[i]);
             selectedLetters.push(answer[i]);
         }
 
-    if (selectedLetters.length < 10) {
+    if (selectedLetters.length < letterAmount) {
         otherLetters = alphabet.diff(answerLetters);
-        let rem = 10 - selectedLetters.length;
+        let rem = letterAmount - selectedLetters.length;
         for (let j = 0; j < rem; j++) {
             let rand = Math.floor(Math.random() * otherLetters.length);
             selectedLetters.push(otherLetters[rand]);
@@ -126,7 +124,7 @@ let writerpageRenderer = function(pageIndex, viewDict) {
 
     selectedLetters = selectedLetters.shuffle();
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < letterAmount; i++) {
         viewDict["button" + i].innerHTML = selectedLetters[i];
     }
 }
